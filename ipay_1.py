@@ -96,7 +96,7 @@ with open("reversebotdata.csv", "a") as f:
         "vid": vid,
         "hash": hash
     }
-    t.sleep(20)
+    t.sleep(10)
     response = requests.post(iPayTransact, headers={
                                 "Content-Type": "application/json; "}, data=json.dumps(data))
     response = response.json()
