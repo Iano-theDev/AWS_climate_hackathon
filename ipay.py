@@ -5,6 +5,7 @@ import hashlib
 import json
 import time as t
 import csv
+from sys import argv
 with open("reversebotdata.csv", "a") as f:
     writer = csv.writer(f)
     #Needed to initate the payment request
@@ -20,8 +21,10 @@ with open("reversebotdata.csv", "a") as f:
     iPayVid = "demo"  #Production Vendor ID will be provided once they have set up your Merchant account
     iPaySecret = b"demoCHANGED"
     order_id=1
-    amount=input("Enter amount you want to donate: \n")
-    phone=input("Enter you phone number: format 254xxxxxxxxx \n")
+    amount = argv[1]
+    #print("Enter amount you want to donate: \n")
+    phone = argv[2]
+    #print("Enter you phone number: format 254xxxxxxxxx \n")
     #email=input("Enter your email? \n")
     email='ngangasammie@gmail.com'
     notifications=1
@@ -96,14 +99,14 @@ with open("reversebotdata.csv", "a") as f:
         "vid": vid,
         "hash": hash
     }
-    t.sleep(20)
-    response = requests.post(iPayTransact, headers={
-                                "Content-Type": "application/json; "}, data=json.dumps(data))
-    response = response.json()
-    if response['header_status'] == 200:
-        print(True, response['data'])
-        writer.writerow(response)
-    else:
-        print(False, "Transaction not found or something went wrong")
-        writer.writerow(response)
+
+    # response = requests.post(iPayTransact, headers={
+    #                             "Content-Type": "application/json; "}, data=json.dumps(data))
+    # response = response.json()
+    # if response['header_status'] == 200:
+    #     print(True, response['data'])
+    #     writer.writerow(response)
+    # else:
+    #     print(False, "Transaction not found or something went wrong")
+    #     writer.writerow(response)
         
